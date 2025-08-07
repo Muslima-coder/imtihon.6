@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@font-face {
+  font-display: swap; 
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: url('../src/assets/fonts/plus-jakarta-sans-v11-latin-regular.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 500;
+  src: url('../src/assets/fonts/plus-jakarta-sans-v11-latin-500.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../src/assets/fonts/plus-jakarta-sans-v11-latin-600.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 700;
+  src: url('../src/assets/fonts/plus-jakarta-sans-v11-latin-700.woff2') format('woff2'); 
+}
+@font-face {
+  font-display: swap; 
+  font-family: 'Plus Jakarta Sans';
+  font-style: normal;
+  font-weight: 800;
+  src: url('../src/assets/fonts/plus-jakarta-sans-v11-latin-800.woff2') format('woff2'); 
+}
+
+body{
+    font-family:'Plus Jakarta Sans', sans-serif ;
+    overflow: hidden;
+}
+
+.login-div1{
+    background-image: url("./assets/images/login-bg-img1.png");
+    background-repeat: no-repeat;
+    background-position:  right center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.login-div2{
+    background: linear-gradient(159.02deg, #0F123B 14.25%, #090D2E 56.45%, #020515 86.14%);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+    min-height: 100vh;
+}
+
+.login-input{
+    background: linear-gradient(117.45deg, rgba(255, 255, 255, 0) -3.91%, rgba(255, 255, 255, 0.039) 75.27%);
+ border: 2px solid;
+
+border-image-source: radial-gradient(69.43% 69.43% at 50% 50%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+radial-gradient(60% 51.57% at 50% 50%, #582CFF 0%, rgba(88, 44, 255, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */,
+radial-gradient(54.8% 53% at 50% 50%, #151515 0%, rgba(21, 21, 21, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+
+backdrop-filter: blur(42px)
+
+}
+
+.register-wrapper{
+  border: 2px solid;
+  border-image-source: radial-gradient(69.43% 69.43% at 49.45% 50%, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%) /* warning: gradient uses a rotation that is not supported by CSS and may not behave as expected */;
+  background: linear-gradient(123.64deg, rgba(255, 255, 255, 0) -22.71%, rgba(255, 255, 255, 0.039) 70.04%);
+  backdrop-filter: blur(42px);
+  border-radius:  30px;
+}
+
+
+button.active .circle {
+  transform: translateX(18px);
+}
+
