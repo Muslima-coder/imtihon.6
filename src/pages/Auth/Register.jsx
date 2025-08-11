@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button, Heading, Input, Text, TextNormal,  } from "../../components";
-import { useCookies } from "react-cookie";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Loading, Logo } from "../../assets/images";
 import { AppleIcon, FacebookIcon, GoogleIcon, KeyIcon, KubIcon, ProfileIcon, SignUsersIcon } from "../../assets/icons";
+import { Context } from "../../Context/Context";
 
 const Toggle = () => {
   const handleClick = (e) => {
@@ -16,19 +16,22 @@ const Toggle = () => {
     </button>);};
 
 const Register = () => {
-   const [cookies, setCookie] = useCookies(['token'])
-  const [loading, setLoading] = useState(false)
+   const {setRegisterData} = useContext(Context)
+  const navigate = useNavigate()
+   const [loading, setLoading] = useState(false)
 
    function handleRegister(e){
     e.preventDefault()
     setLoading(true)
     const data = {
+      name:e.target.name.value,
       email:e.target.email.value,
       password:e.target.password.value
     }
-    setTimeout(() => {
-      setCookie("token", data)
-    },1000);
+      setTimeout(() => {
+        setRegisterData(data)
+        navigate("/login")
+    },1500);
   }
   return (
     <section className=" flex items-center w-full min-h-[100vh] relative">
@@ -38,19 +41,19 @@ const Register = () => {
       </a>
       <div className="flex items-center gap-[33px]">
         <div className="flex items-center gap-[4px]">
-          <KubIcon/>
+          <div className="text-white "><KubIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"DASHBOARD"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <ProfileIcon/>
+          <div className="text-white "><ProfileIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"PROFILE"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <SignUsersIcon/>
+          <div className="text-white "><SignUsersIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"SIGN UP"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <KeyIcon/>
+          <div className="text-white "><KeyIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"SIGN IN"}/>
         </div>
       </div>
@@ -73,17 +76,17 @@ const Register = () => {
           <div className="flex gap-[15px] items-center justify-center ">
             <div className="w-[75px] h-[75px] rounded-[20px] border-[2px] border-[#FFFFFF] flex items-center justify-center ">
              <a href="https://www.facebook.com" target="_blank">
-              <FacebookIcon/>
+              <div className="text-white"><FacebookIcon/></div>
              </a>
             </div>
             <div className="w-[75px] h-[75px] rounded-[20px] border-[2px] border-[#FFFFFF] flex items-center justify-center ">
               <a href="https://www.apple.com" target="_blank">
-              <AppleIcon/>
+              <div className="text-white"><AppleIcon/></div>
              </a>
             </div>
             <div className="w-[75px] h-[75px] rounded-[20px] border-[2px] border-[#FFFFFF] flex items-center justify-center ">
               <a href="https://www.google.com" target="_blank">
-              <GoogleIcon/>
+              <div className="text-white"><GoogleIcon/></div>
              </a>
             </div>
           </div>
@@ -97,7 +100,7 @@ const Register = () => {
           <Input type="text" name="email" placeholder="Your email address" />
 
           <TextNormal extraClass="!text-white mt-[15px] mb-[4px]" title="Password" />
-          <Input type="text" name="password" placeholder="Your password" />
+          <Input type="password" name="password" placeholder="Your password" />
            <div className="mt-[15px] mb-[35px] flex items-center gap-[10px]">
             <Toggle />
             <TextNormal extraClass={"!text-white"} title={"Remember me "}/>
@@ -108,7 +111,7 @@ const Register = () => {
           </form>
          <div className="flex items-center pt-[22px] justify-center text-center gap-[2px]">
           <TextNormal title={"Already have an account?"}/>
-          <Link to={'/register'} className="text-[14px] leading-[140%] text-white">Sign in</Link>
+          <Link to={'/login'} className="text-[14px] leading-[140%] text-white">Sign in</Link>
          </div>
          </div>
         </div>

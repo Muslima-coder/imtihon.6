@@ -81,3 +81,60 @@ button.active .circle {
   transform: translateX(18px);
 }
 
+
+.navbar{
+  background: linear-gradient(111.84deg, rgba(6, 11, 38, 0.94) 59.3%, rgba(26, 31, 55, 0) 100%);
+}
+
+.active{
+ background-color: #1A1F37;
+}
+.active .icon-wrapper {
+  background-color: #0075FF;
+  color: white;
+}
+.navbar-span{
+    background-image: linear-gradient(90deg, rgba(224, 225, 226, 0) 0%, #E0E1E2 49.52%, rgba(224, 225, 226, 0.15625) 99.04%);
+}
+
+.home-nav-wrapper{
+    backdrop-filter: blur(272px);
+    background-image: url("./assets/images/navbar-home.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+}
+
+
+.money-list-wrapper{
+  background: linear-gradient(126.97deg, rgba(6, 11, 38, 0.74) 28.26%, rgba(26, 31, 55, 0.5) 91.2%);
+  backdrop-filter: blur(120px)
+}
+
+.footer{
+  background: linear-gradient(90deg, #02133f 0%, #0073ff 100%);
+ 
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 80%;
+  z-index: 100;
+}
+
+.authors-table{
+background: linear-gradient(126.97deg, rgba(6, 11, 40, 0.74) 28.26%, rgba(10, 14, 35, 0.71) 91.2%);
+backdrop-filter: blur(120px)
+
+}
+
+.documentation{
+background-image: url("./assets/images/NavbarImgDocumentation.png");
+background-repeat: no-repeat;
+background-size: cover;
+}
+
+.documentation-btn{
+background: linear-gradient(126.97deg, rgba(6, 11, 40, 0.74) 28.26%, rgba(10, 14, 35, 0.71) 91.2%);
+
+}

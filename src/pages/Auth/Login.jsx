@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { Button, Heading, Input, Text, TextNormal,  } from "../../components";
 import { useCookies } from "react-cookie";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Loading, Logo } from "../../assets/images";
 import { KeyIcon, KubIcon, ProfileIcon, SignUsersIcon } from "../../assets/icons";
+import { Context } from "../../Context/Context";
+import { toast } from "react-toastify";
 
 const Toggle = () => {
   const handleClick = (e) => {
@@ -16,7 +18,8 @@ const Toggle = () => {
     </button>);};
 
 const Login = () => {
-   const [cookies, setCookie] = useCookies(['token'])
+  const {registerData} = useContext(Context)
+  const [cookies, setCookie] = useCookies(['token'])
   const [loading, setLoading] = useState(false)
 
    function handleLogin(e){
@@ -26,9 +29,19 @@ const Login = () => {
       email:e.target.email.value,
       password:e.target.password.value
     }
-    setTimeout(() => {
-      setCookie("token", data)
-    },1000);
+    if(!registerData){
+      setTimeout(() => {
+        location.pathname = "/register"
+       },1000)
+    }
+  else{
+    if(data.email == registerData.email && data.password == registerData.password){
+        setTimeout(() => {
+          setCookie("token", registerData)
+          location.pathname = "/"
+        },1000);
+     }
+  }
   }
   return (
     <section className=" flex items-center w-full min-h-[100vh] relative">
@@ -38,19 +51,19 @@ const Login = () => {
       </a>
       <div className="flex items-center gap-[33px]">
         <div className="flex items-center gap-[4px]">
-          <KubIcon/>
+          <div className="text-white "><KubIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"DASHBOARD"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <ProfileIcon/>
+          <div className="text-white "><ProfileIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"PROFILE"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <SignUsersIcon/>
+          <div className="text-white "><SignUsersIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"SIGN UP"}/>
         </div>
         <div className="flex items-center gap-[4px]">
-          <KeyIcon/>
+          <div className="text-white "><KeyIcon/></div>
           <TextNormal extraClass={"!text-[10px] !font-bold text-white "} title={"SIGN IN"}/>
         </div>
       </div>
@@ -73,7 +86,7 @@ const Login = () => {
           <Input type="text" name="email" placeholder="Your email address" />
 
           <TextNormal extraClass="!text-white mt-[15px] mb-[4px]" title="Password" />
-          <Input type="text" name="password" placeholder="Your password" />
+          <Input type="password" name="password" placeholder="Your password" />
            <div className="mt-[15px] mb-[35px] flex items-center gap-[10px]">
             <Toggle />
             <TextNormal extraClass={"!text-white"} title={"Remember me "}/>
