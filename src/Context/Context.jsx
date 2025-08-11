@@ -70,51 +70,41 @@ export const GlobalContext = ({ children }) => {
       id: 1,
       img: ProjectImg1,
       name: "Esthera Jackson",
-      email: "esthera@simmmple.com",
-      profession: "Manager",
-      position: "Organization",
-      status: "Online",
-      employed: "14/01/21",
+      budget:"$14,000",
+      status: "Working",
+      completetion: "60%",
     },
     {
       id: 2,
       img: ProjectImg2,
-      name: "Alexa Liras",
-      email: "alexa@simmmple.com",
-      profession: "Programmer",
-      position: "Developer",
-      status: "Offline",
-      employed: "14/01/21",
+      name: "Esthera Jackson",
+      budget:"$14,000",
+      status: "Working",
+      completetion: "60%",
     },
     {
       id: 3,
       img: ProjectImg3,
-      name: "Laurent Michael",
-      email: "laurent@simmmple.com",
-      profession: "Executive",
-      position: "Projects",
-      status: "Online",
-      employed: "14/01/21",
+      name: "Esthera Jackson",
+      budget:"$14,000",
+      status: "Working",
+      completetion: "60%",
     },
     {
       id: 4,
       img: ProjectImg4,
-      name: "Freduardo Hill",
-      email: "freduardo@simmmple.com",
-      profession: "Manager",
-      position: "Organization",
-      status: "Online",
-      employed: "14/01/21",
+      name: "Esthera Jackson",
+      budget:"$14,000",
+      status: "Working",
+      completetion: "60%",
     },
     {
       id: 5,
       img: ProjectImg5,
-      name: "Daniel Thomas",
-      email: "daniel@simmmple.com",
-      profession: "Programmer",
-      position: "Developer",
-      status: "Offline",
-      employed: "14/01/21",
+     name: "Esthera Jackson",
+      budget:"$14,000",
+      status: "Working",
+      completetion: "60%",
     },
   ]
   const [registerData, setRegisterData] = useState(null);
@@ -131,6 +121,16 @@ export const GlobalContext = ({ children }) => {
     localStorage.setItem("authors", JSON.stringify(deleted));
   }
 
+    //delete Project btn
+  function deleteBtn(id) {
+    const deleted = [...projects];
+    const index = deleted.findIndex(user => user.id === id);
+
+    deleted.splice(index, 1);
+    setProjects(deleted);
+    localStorage.setItem("projects", JSON.stringify(deleted));
+  }
+
 
 
   // Add function
@@ -140,11 +140,17 @@ export const GlobalContext = ({ children }) => {
     localStorage.setItem("authors", JSON.stringify(updated));
   }
 
+  //Add Project
+   function addProject(data) {
+    const updated = [...projects, data];
+    setProjects(updated);
+    localStorage.setItem("projects", JSON.stringify(updated));
+  }
 
 
 
   return (
-    <Context.Provider value={{ registerData, setRegisterData, authors, setAuthors, deleteBtn, addAuthor, projects, setProjects }}>
+    <Context.Provider value={{ registerData, setRegisterData, authors, setAuthors, deleteBtn, addAuthor, projects, setProjects, addProject }}>
       {children}
     </Context.Provider>
   );

@@ -1,11 +1,11 @@
 import { useContext, useState } from "react"
 import { Context } from "../Context/Context"
 import { TextNormal } from "../components"
-import { AddPersonIcon, CancelIcon, CheckIcon, DeleteIcon, MoreIcon, UpdateIcon } from "../assets/icons"
+import { AddIcon,  CancelIcon, CheckIcon, DeleteIcon, MoreIcon, UpdateIcon } from "../assets/icons"
 import { Link } from "react-router-dom"
 
 const Projects = () => {
-    const {authors, setAuthors, deleteBtn, updateBtn, addAuthor} = useContext(Context)
+    const {projects, setProjects , deleteBtn, updateBtn, addProject} = useContext(Context)
     const [menuOpen, setMenuOpen] = useState(false);
     const [addMenuOpen, setAddMenuOpen] = useState(false)
     const [itemId, setItemId] = useState(null)
@@ -13,17 +13,14 @@ const Projects = () => {
     function handleCreate(e){
     e.preventDefault()
     const data = {
-        id: authors[authors.length -1]?.id ? authors[authors.length -1].id +1 : 1,
+        id: projects[projects.length -1]?.id ? projects[projects.length -1].id +1 : 1,
         name:e.target.name.value,
-        email:e.target.email.value ,
-        profession:e.target.profession.value,
-        position: e.target.position.value,
-        status: e.target.status.value,
+        budget:e.target.budget.value ,
+        status:e.target.status.value,
+        completetion: e.target.completetion.value,
         img:e.target.image.value,
-        employed: new Date().toLocaleDateString()
     }
-    // setAuthors(data)
-    addAuthor(data)
+    addProject(data)
     setAddMenuOpen(false)
   }
 
@@ -38,7 +35,7 @@ const Projects = () => {
           <TextNormal title={"30 done this month"}/>
           </div>
         </div>
-        <button onClick={() => setAddMenuOpen(true)} className="cursor-pointer text-white "><AddPersonIcon/></button>
+        <button onClick={() => setAddMenuOpen(true)} className="cursor-pointer text-white "><AddIcon/></button>
       </div>
       <table className="w-full">
         <thead>
@@ -50,27 +47,24 @@ const Projects = () => {
           </tr>
         </thead>
         <tbody>
-          {authors.map(item => (
+          {projects.map(item => (
             <tr className="relative border-t-[1px] border-t-[#56577A] " key={item.id}>
               <td className="flex items-center gap-[15px]">
-                <img className="py-[11px] rounded-full" src={item.img} alt="img" width={40} height={40} />
-                <div className="flex flex-col">
+                <img className="py-[11px] rounded-full" src={item.img} alt="img" width={20} height={19} />
                 <TextNormal extraClass={"text-white"} title={item.name}/>
-                <TextNormal extraClass={"text-[#A0AEC0]"} title={item.email}/>
-              </div>
               </td>
               <td>
-                <TextNormal extraClass={"text-white"} title={item.profession}/>
-                <TextNormal extraClass={"text-[#A0AEC0]"} title={item.position}/>
+                <TextNormal extraClass={"text-white"} title={item.budget}/>
               </td>
               <td>
-                <div className={item.status === "Online" ? "cursor-pointer text-[14px] leading-[140%] w-[65px] h-[25px] rounded-[8px] text-white flex justify-center items-center border-none bg-[#01B574] " : "cursor-pointer text-[14px] leading-[140%] w-[65px] h-[25px] rounded-[8px] text-white flex justify-center items-center border-[1px] border-white "}>
-                {item.status}
-                </div>
+                <TextNormal extraClass={"text-white"} title={item.status}/>
               </td>
 
               <td>
-                <TextNormal extraClass={"text-white"} title={item.employed}/>
+                <TextNormal extraClass={"text-white"} title={item.completetion}/>
+                <div className="w-[125px] bg-[#2D2E5F] h-[2px] relative">
+                  <span className="w-[60%] bg-[#0075FF] absolute"></span>
+                </div>
               </td>
               <td>
                 <button onClick={() => {setMenuOpen(true); setItemId(item)}} className="text-white cursor-pointer">
@@ -101,12 +95,11 @@ const Projects = () => {
         {addMenuOpen && (
         <div className="w-[300px] p-3 absolute left-80 top-3">
             <form onSubmit={handleCreate} autoComplete="off" className=" p-[20px] bg-slate-600 rounded-md space-y-2 w-[300px] text-center">
-              <h2 className="text-[20px] font-medium text-white">Add Person</h2>
+              <h2 className="text-[20px] font-medium text-white">Add Project</h2>
               <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="name" name="name" />
-              <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="email" name="email" />
-              <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="profession" name="profession" />
-              <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="position" name="position" />
+              <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="budget" name="budget" />
               <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="status" name="status" />
+              <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="completetion" name="completetion" />
               <input className="w-full p-2 border-[1.5px] border-slate-400 rounded-[10px] outline-none focus:shadow-md shadow-slate-200 text-white" required type="text" placeholder="image URL" name="image" />
               <div className="flex justify-between">
                 <button  onClick={() => setAddMenuOpen(false)} className="duration-300 cursor-pointer  bg-red-500 text-white px-3 py-2 rounded-md hover:bg-red-600">Cancel</button>
